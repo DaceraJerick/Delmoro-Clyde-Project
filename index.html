@@ -1,0 +1,3469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Baradillo Jiame N. | Web Dev Portfolio</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;600;700&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --text: #064e3b;
+            --muted: #4b5563;
+            --accent1: #10b981;
+            --accent2: #059669;
+            --card-bg: rgba(255, 255, 255, 0.72);
+            --card-border: rgba(255, 255, 255, 0.90);
+        }
+
+        .dark {
+            --text: #f0fdf4;
+            --muted: #a7f3d0;
+            --accent1: #34d399;
+            --accent2: #10b981;
+            --card-bg: rgba(2, 44, 34, 0.72);
+            --card-border: rgba(6, 78, 59, 0.90);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            min-height: 100vh;
+            background:
+                radial-gradient(ellipse 65% 55% at 10% 5%, rgba(16, 185, 129, .30) 0%, transparent 55%),
+                radial-gradient(ellipse 50% 45% at 90% 12%, rgba(5, 150, 105, .25) 0%, transparent 52%),
+                radial-gradient(ellipse 55% 55% at 50% 46%, rgba(110, 231, 183, .22) 0%, transparent 60%),
+                #f0fdf4;
+            background-attachment: fixed;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .dark body {
+            background:
+                radial-gradient(ellipse 65% 55% at 10% 5%, rgba(16, 185, 129, 0.15) 0%, transparent 55%),
+                radial-gradient(ellipse 50% 45% at 90% 12%, rgba(5, 150, 105, 0.15) 0%, transparent 52%),
+                radial-gradient(ellipse 55% 55% at 50% 46%, rgba(110, 231, 183, 0.12) 0%, transparent 60%),
+                #022c22;
+        }
+
+        /* ─── TOP HEADER ───────────────────────── */
+        .top-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 76px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 44px;
+            box-shadow: 0 4px 20px rgba(5, 150, 105, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .dark .top-header {
+            background: rgba(2, 44, 34, 0.85);
+            border-bottom-color: rgba(16, 185, 129, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .header-brand {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-brand-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--text);
+            line-height: 1.1;
+        }
+
+        .nav-brand-sub {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--muted);
+            transition: all 0.2s;
+            padding: 8px 14px;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent1);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .nav-link.logout-link {
+            color: #ef4444;
+        }
+        
+        .nav-link.logout-link:hover {
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all .2s;
+            font-size: 18px;
+        }
+
+        .dark .theme-toggle {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .theme-toggle:hover {
+            background: rgba(16, 185, 129, 0.2);
+        }
+
+        .theme-toggle .moon-icon { display: none; }
+        .dark .theme-toggle .sun-icon { display: none; }
+        .dark .theme-toggle .moon-icon { display: block; }
+
+
+        /* Scrollable nav body */
+        .nav-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px 0 24px;
+        }
+
+        .nav-body::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .nav-body::-webkit-scrollbar-thumb {
+            background: rgba(124, 58, 237, .2);
+            border-radius: 2px;
+        }
+
+        /* ─── MAIN ────────────────────────────── */
+        main {
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 90px 44px 100px;
+        }
+
+        /* ─── HERO ────────────────────────────── */
+        .hero {
+            padding: 90px 0 80px;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255, 255, 255, .72);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, .95);
+            border-radius: 100px;
+            padding: 6px 16px 6px 12px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+            box-shadow: 0 2px 12px rgba(16, 185, 129, .15);
+        }
+
+        .hero-pill::before {
+            content: '✦';
+            font-size: 9px;
+            color: var(--accent1);
+        }
+
+        .hero-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(60px, 10vw, 118px);
+            font-weight: 900;
+            line-height: .88;
+            letter-spacing: -1px;
+            margin-bottom: 28px;
+        }
+
+        .hero-name .line1 {
+            display: block;
+            color: var(--text);
+        }
+
+        .hero-name .line2 {
+            display: block;
+            background: linear-gradient(90deg, #059669 0%, #10b981 68%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: 16px;
+            color: var(--muted);
+            line-height: 1.7;
+            max-width: 490px;
+            margin-bottom: 36px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 26px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: .5px;
+            text-decoration: none;
+            border-radius: 11px;
+            cursor: pointer;
+            transition: all .2s;
+            font-family: 'DM Sans', sans-serif;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--text);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent1);
+            box-shadow: 0 6px 22px rgba(16, 185, 129, .35);
+        }
+
+        .btn-ghost {
+            background: rgba(255, 255, 255, .72);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, .95);
+            color: var(--text);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, .96);
+        }
+
+        /* ─── CARDS SECTION ───────────────────── */
+        .cards-section {
+            padding: 0 0 80px;
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent1);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .section-heading {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(36px, 5vw, 54px);
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: -.5px;
+            margin-bottom: 24px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .act-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 22px;
+            text-decoration: none;
+            display: block;
+            box-shadow: 0 2px 18px rgba(110, 70, 210, .08);
+            transition: all .25s;
+            cursor: pointer;
+        }
+
+        .act-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 36px rgba(110, 70, 210, .16);
+            background: rgba(255, 255, 255, .90);
+        }
+
+        .act-card-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .act-card-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: rgba(124, 58, 237, .11);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent1);
+            margin-bottom: 12px;
+        }
+
+        .act-card-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 5px;
+        }
+
+        .act-card-desc {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        /* ─── ACTIVITY SECTION ────────────────── */
+        .activity-section {
+            padding: 72px 0;
+            border-top: 1px solid rgba(200, 190, 255, .30);
+            scroll-margin-top: 20px;
+            display: none;
+        }
+
+        .activity-section.active {
+            display: block;
+        }
+
+        .act-header {
+            margin-bottom: 32px;
+        }
+
+        .act-header-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent2);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .act-header h2 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(38px, 6vw, 62px);
+            font-weight: 800;
+            letter-spacing: -.5px;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .act-header p {
+            font-size: 15px;
+            color: var(--muted);
+        }
+
+        .exercises-list {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        .exercise {
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: 0 2px 14px rgba(110, 70, 210, .07);
+            scroll-margin-top: 80px;
+        }
+
+        .ex-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .ex-badge {
+            width: 28px;
+            height: 28px;
+            border-radius: 7px;
+            background: rgba(124, 58, 237, .12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--accent1);
+            flex-shrink: 0;
+        }
+
+        .ex-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .ex-panels {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        /* Output panel */
+        .panel-output {
+            background: rgba(255, 252, 250, .88);
+            border: 1px solid rgba(235, 228, 255, .9);
+            border-radius: 11px;
+            overflow: hidden;
+        }
+
+        .dark .panel-output {
+            background: rgba(30, 41, 59, 0.5);
+            border-color: rgba(51, 65, 85, 0.6);
+        }
+
+        .out-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 13px;
+            border-bottom: 1px solid rgba(235, 228, 255, .8);
+            background: rgba(255, 255, 255, .65);
+        }
+
+        .dark .out-header {
+            background: rgba(30, 41, 59, 0.8);
+            border-color: rgba(51, 65, 85, 0.6);
+        }
+
+        .out-header-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .code-toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 11px;
+            background: rgba(124, 58, 237, .10);
+            color: var(--accent1);
+            border: 1px solid rgba(124, 58, 237, .25);
+            border-radius: 7px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .code-toggle-btn:hover {
+            background: rgba(124, 58, 237, .18);
+        }
+
+        .code-toggle-btn .btn-icon {
+            transition: transform .2s;
+            display: inline-block;
+        }
+
+        .code-toggle-btn.open .btn-icon {
+            transform: rotate(90deg);
+        }
+
+        .out-body {
+            padding: 14px 16px;
+            font-size: 15px;
+            line-height: 1.75;
+            color: var(--text);
+        }
+
+        /* Code panel */
+        .panel-code {
+            background: #1e1e2e;
+            border: 1px solid #313244;
+            border-radius: 11px;
+            overflow: hidden;
+            display: none;
+            animation: slideDown .2s ease;
+        }
+
+        .panel-code.visible {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 7px 13px;
+            background: #181825;
+            border-bottom: 1px solid #313244;
+        }
+
+        .code-header-left {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+        }
+
+        .dot-r {
+            background: #f38ba8;
+        }
+
+        .dot-y {
+            background: #f9e2af;
+        }
+
+        .dot-g {
+            background: #a6e3a1;
+        }
+
+        .code-header-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            color: #cba6f7;
+            letter-spacing: 2px;
+            margin-left: 4px;
+        }
+
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 10px;
+            background: #313244;
+            color: #cba6f7;
+            border: 1px solid #45475a;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all .18s;
+        }
+
+        .copy-btn:hover {
+            background: #45475a;
+            color: #f5c2e7;
+            border-color: #cba6f7;
+        }
+
+        .copy-btn.copied {
+            background: #1e3a28;
+            color: #4ade80;
+            border-color: #4ade80;
+        }
+
+        .panel-code pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            line-height: 1.8;
+            padding: 14px 16px;
+            color: #cdd6f4;
+            overflow-x: auto;
+            white-space: pre;
+            margin: 0;
+        }
+
+        .panel-code pre .tag {
+            color: #f38ba8;
+        }
+
+        .panel-code pre .attr {
+            color: #fab387;
+        }
+
+        .panel-code pre .val {
+            color: #a6e3a1;
+        }
+
+        .panel-code pre .cmt {
+            color: #6c7086;
+            font-style: italic;
+        }
+
+        /* ─── CONTENT STYLES ──────────────────── */
+        .name-green {
+            color: #16a34a;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .name-tahoma {
+            font-family: 'Tahoma', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .color-nums {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .color-nums span {
+            font-size: 22px;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .heading-name {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .heading-name span {
+            font-weight: 700;
+            color: var(--accent1);
+        }
+
+        .multi-font p {
+            margin: 4px 0;
+            font-size: 14px;
+        }
+
+        .book-desc {
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .book-desc .underline {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .book-desc em {
+            font-style: italic;
+            font-weight: 700;
+            color: var(--accent1);
+        }
+
+        .squares-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            max-width: 480px;
+        }
+
+        .sq-item {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #6d28d9;
+            background: rgba(124, 58, 237, .09);
+            padding: 6px 10px;
+            border-radius: 6px;
+        }
+
+        .names-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .names-col h4 {
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .names-col ol,
+        .names-col ul {
+            padding-left: 20px;
+        }
+
+        .names-col li {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--text);
+            margin: 4px 0;
+        }
+
+        .list-duo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .list-duo h4 {
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .list-duo ol,
+        .list-duo ul {
+            padding-left: 20px;
+        }
+
+        .list-duo li {
+            font-size: 13px;
+            color: var(--text);
+            margin: 4px 0;
+            line-height: 1.5;
+        }
+
+        blockquote {
+            border-left: 3px solid var(--accent1);
+            padding: 12px 20px;
+            margin: 8px 0;
+            background: rgba(124, 58, 237, .05);
+            border-radius: 0 10px 10px 0;
+        }
+
+        blockquote p {
+            font-style: italic;
+            font-size: 14px;
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        blockquote cite {
+            font-size: 12px;
+            color: var(--muted);
+            font-style: normal;
+            font-weight: 600;
+            display: block;
+            margin-top: 6px;
+        }
+
+        .del-ins {
+            font-size: 14px;
+            line-height: 2.2;
+        }
+
+        del {
+            color: #b91c1c;
+            text-decoration: line-through;
+        }
+
+        ins {
+            color: #15803d;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .arrow {
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        dl.def-list dt {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--accent1);
+            margin-top: 12px;
+        }
+
+        dl.def-list dd {
+            font-size: 13px;
+            color: var(--muted);
+            padding-left: 16px;
+            border-left: 2px solid rgba(200, 190, 255, .4);
+            margin: 4px 0 0;
+            line-height: 1.6;
+        }
+
+        .address-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .addr-card {
+            background: rgba(255, 255, 255, .62);
+            border: 1px solid rgba(235, 228, 255, .85);
+            padding: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            line-height: 1.8;
+            color: var(--text);
+            border-radius: 10px;
+        }
+
+        .addr-card .addr-label {
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .abbr-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .abbr-item {
+            display: flex;
+            gap: 16px;
+            font-size: 13px;
+            align-items: baseline;
+        }
+
+        .abbr-item abbr {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--accent1);
+            font-weight: 700;
+            width: 60px;
+            flex-shrink: 0;
+        }
+
+        .abbr-item span {
+            color: var(--muted);
+        }
+
+        .link-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .ext-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 16px;
+            background: rgba(255, 255, 255, .72);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, .95);
+            border-radius: 9px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+            transition: all .2s;
+        }
+
+        .ext-link:hover {
+            background: rgba(124, 58, 237, .10);
+            border-color: rgba(124, 58, 237, .3);
+            color: var(--accent1);
+        }
+
+        .jump-demo {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: rgba(255, 255, 255, .60);
+            border: 1px solid rgba(235, 228, 255, .85);
+            border-radius: 10px;
+            padding: 14px;
+        }
+
+        .jd-top,
+        .jd-bot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .jump-link {
+            color: var(--accent1);
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .jump-link:hover {
+            text-decoration: underline;
+        }
+
+        .jd-mid {
+            text-align: center;
+            color: var(--muted);
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        .img-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        .img-card {
+            background: rgba(255, 255, 255, .62);
+            border: 1px solid rgba(235, 228, 255, .85);
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .img-card img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            display: block;
+            transition: filter .3s;
+        }
+
+        .img-card:hover img {
+            filter: brightness(1.05);
+        }
+
+        .img-card-label {
+            padding: 7px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        .img-bordered {
+            border: 2px solid var(--accent1);
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            border-radius: 12px;
+        }
+
+        .img-link-demo {
+            display: inline-block;
+            border: 1px solid rgba(235, 228, 255, .85);
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .img-link-demo img {
+            width: 280px;
+            height: 170px;
+            object-fit: cover;
+            display: block;
+            transition: filter .3s;
+        }
+
+        .img-link-demo:hover img {
+            filter: brightness(1.08);
+        }
+
+        .img-hint {
+            font-size: 11px;
+            color: var(--muted);
+            font-weight: 600;
+            margin-top: 6px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 36px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-family: 'JetBrains Mono', monospace;
+            transition: color .2s;
+        }
+
+        .back-btn:hover {
+            color: var(--accent1);
+        }
+
+        .back-btn::before {
+            content: '←';
+        }
+
+        @media (max-width: 820px) {
+            .cards-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 520px) {
+            main {
+                padding: 0 18px 60px;
+            }
+
+            .hero {
+                padding: 56px 0 56px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .address-grid,
+            .names-grid,
+            .list-duo {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-panel {
+                width: 100%;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(124, 58, 237, .25);
+            border-radius: 3px;
+        }
+
+        /* ─── CARDS CATEGORY ─────────────────── */
+        .cards-category {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent1);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin: 28px 0 12px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(16, 185, 129, 0.15);
+        }
+        .cards-category:first-of-type { margin-top: 0; border-top: none; padding-top: 0; }
+
+        /* ─── STYLE GALLERY ──────────────────── */
+        .style-gallery {
+            margin-top: 24px;
+            padding: 24px;
+            background: rgba(16, 185, 129, 0.04);
+            border: 1px dashed rgba(16, 185, 129, 0.25);
+            border-radius: 16px;
+        }
+        .sg-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent1);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .sg-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+        }
+        .sg-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 16px;
+            transition: transform 0.2s;
+        }
+        .sg-card:hover { transform: translateY(-2px); }
+        .sg-card-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .sg-card-demo { margin-top: 8px; }
+
+        /* ─── CSS DEMO BOXES ─────────────────── */
+        .css-demo-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            margin: 10px 0;
+        }
+        .css-demo-box {
+            background: rgba(16, 185, 129, 0.08);
+            border: 2px solid var(--accent1);
+            border-radius: 10px;
+            padding: 16px 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text);
+            text-align: center;
+            transition: all 0.3s;
+            min-width: 120px;
+        }
+        .css-demo-box:hover { background: rgba(16, 185, 129, 0.15); transform: scale(1.02); }
+        .css-demo-label {
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        .css-demo-visual {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px dashed rgba(16, 185, 129, 0.4);
+            border-radius: 8px;
+            padding: 12px;
+        }
+        .dark .css-demo-visual { background: rgba(255, 255, 255, 0.05); }
+
+        /* ─── CSS TABLE DEMO ─────────────────── */
+        .css-table-demo {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(16, 185, 129, 0.1);
+        }
+        .css-table-demo th {
+            background: var(--accent1);
+            color: white;
+            padding: 14px 18px;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: left;
+        }
+        .css-table-demo td {
+            padding: 12px 18px;
+            font-size: 13px;
+            color: var(--text);
+            border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+        }
+        .css-table-demo tr:nth-child(even) td { background: rgba(16, 185, 129, 0.04); }
+        .css-table-demo tr:hover td { background: rgba(16, 185, 129, 0.1); }
+
+        /* ─── SESSION SHOWCASE ───────────────── */
+        .session-container {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+        .session-card-main {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 48px 32px;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+        .dark .session-card-main {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .session-shield {
+            font-size: 64px;
+            margin-bottom: 24px;
+            filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.2));
+            display: inline-block;
+        }
+        .session-status-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+        .session-status-badge {
+            color: var(--accent1);
+            font-weight: 900;
+        }
+        .session-desc {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 32px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .session-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .sess-btn {
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            text-decoration: none;
+        }
+        .sess-btn-logout {
+            background: #ef4444;
+            color: white;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+        }
+        .sess-btn-logout:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3);
+        }
+        .sess-btn-home {
+            background: #1a1a1a;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .dark .sess-btn-home {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .sess-btn-home:hover {
+            background: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+        .session-user-info {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(16, 185, 129, 0.1);
+            font-size: 11px;
+            color: var(--muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ─── MOBILE RESPONSIVE ADDITIONS ────── */
+        @media (max-width: 820px) {
+            .session-grid { grid-template-columns: 1fr; }
+            .sg-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+        }
+
+        @media (max-width: 640px) {
+            .header-nav {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                gap: 6px;
+            }
+            .header-nav::-webkit-scrollbar { display: none; }
+            .nav-link { white-space: nowrap; padding: 6px 10px; font-size: 12px; }
+            .top-header { padding: 0 16px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══ TOP HEADER ═══════════════════════════ -->
+    <header class="top-header">
+        <div class="header-brand">
+            <div class="nav-brand-name">BARADILLO JIAME N.</div>
+            <div class="nav-brand-sub">Webdev Portfolio</div>
+        </div>
+        
+        <div class="header-right">
+            <nav class="header-nav">
+                <a href="#hero" class="nav-link active" id="navHome">Home</a>
+                <a href="#" class="nav-link" onclick="showActivity('act1')">HTML</a>
+                <a href="#" class="nav-link" onclick="showActivity('act6')">CSS</a>
+                <a href="#" class="nav-link" onclick="showActivity('act11')">Database</a>
+                <a href="#" class="nav-link" onclick="showActivity('act12')">Members</a>
+                <a href="#" class="nav-link logout-link" onclick="logout()">Logout</a>
+            </nav>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- ═══ HERO ═══════════════════════════════ -->
+        <section class="hero" id="hero">
+            <div class="hero-pill">Web Dev Portfolio</div>
+            <h1 class="hero-name">
+                <span class="line1">BARADILLO JIAME</span>
+                <span class="line2">N.</span>
+            </h1>
+            <p class="hero-desc">Complete web system exercises — Activities 1–12 — showcasing HTML fundamentals, CSS design properties, Supabase database integration, and session management.</p>
+        </section>
+
+        <!-- ═══ CARDS ═══════════════════════════════ -->
+        <section class="cards-section" id="cards">
+            <div class="section-label">Activities</div>
+            <div class="section-heading">Browse All Work</div>
+            <div class="cards-category">I. HTML Basics</div>
+            <div class="cards-grid">
+                <div class="act-card" onclick="showActivity('act1')">
+                    <div class="act-card-label">Activity 01</div>
+                    <div class="act-card-icon">&lt;/&gt;</div>
+                    <div class="act-card-name">Basics</div>
+                    <div class="act-card-desc">6 fundamental HTML exercises — name display, numbers, page titles.</div>
+                </div>
+                <div class="act-card" onclick="showActivity('act2')">
+                    <div class="act-card-label">Activity 02</div>
+                    <div class="act-card-icon">A</div>
+                    <div class="act-card-name">Text</div>
+                    <div class="act-card-desc">6 text styling exercises with colors, fonts, and formatting.</div>
+                </div>
+                <div class="act-card" onclick="showActivity('act3')">
+                    <div class="act-card-label">Activity 03</div>
+                    <div class="act-card-icon">TI</div>
+                    <div class="act-card-name">Formatting</div>
+                    <div class="act-card-desc">Advanced formatting — lists, quotes, addresses and more.</div>
+                </div>
+                <div class="act-card" onclick="showActivity('act4')">
+                    <div class="act-card-label">Activity 04</div>
+                    <div class="act-card-icon">🔗</div>
+                    <div class="act-card-name">Links</div>
+                    <div class="act-card-desc">5 link exercises — search engines and page navigation.</div>
+                </div>
+                <div class="act-card" onclick="showActivity('act5')">
+                    <div class="act-card-label">Activity 05</div>
+                    <div class="act-card-icon">🖼</div>
+                    <div class="act-card-name">Images</div>
+                    <div class="act-card-desc">4 image exercises — galleries, borders, and image links.</div>
+                </div>
+            </div>
+
+            <div class="cards-category">II. CSS Design</div>
+            <div class="cards-grid">
+                <div class="act-card" onclick="showActivity('act6')">
+                    <div class="act-card-label">Activity 06</div>
+                    <div class="act-card-icon">⬜</div>
+                    <div class="act-card-name">CSS Margin</div>
+                    <div class="act-card-desc">Margin property — controlling space outside elements.</div>
+                </div>
+                <div class="act-card" onclick="showActivity('act7')">
+                    <div class="act-card-label">Activity 07</div>
+                    <div class="act-card-icon">◻️</div>
+                    <div class="act-card-name">CSS Padding</div>
+                    <div class="act-card-desc">Padding-left property — inner spacing demonstrations.</div>
+                </div>
+                <div class="act-card" onclick="showActivity('act8')">
+                    <div class="act-card-label">Activity 08</div>
+                    <div class="act-card-icon">▣</div>
+                    <div class="act-card-name">CSS Outline</div>
+                    <div class="act-card-desc">Outline styles, colors, width and offset properties.</div>
+                </div>
+                <div class="act-card" onclick="showActivity('act9')">
+                    <div class="act-card-label">Activity 09</div>
+                    <div class="act-card-icon">📊</div>
+                    <div class="act-card-name">CSS Tables</div>
+                    <div class="act-card-desc">Table styling — borders, striping, hover effects.</div>
+                </div>
+                <div class="act-card" onclick="showActivity('act10')">
+                    <div class="act-card-label">Activity 10</div>
+                    <div class="act-card-icon">📐</div>
+                    <div class="act-card-name">CSS Dimensions</div>
+                    <div class="act-card-desc">Width, height, max/min sizing properties.</div>
+                </div>
+            </div>
+
+            <div class="cards-category">III. Supabase Integration</div>
+            <div class="cards-grid">
+                <div class="act-card" onclick="showActivity('act11')">
+                    <div class="act-card-label">Activity 11</div>
+                    <div class="act-card-icon">🗄️</div>
+                    <div class="act-card-name">Database</div>
+                    <div class="act-card-desc">Supabase database CRUD — add, edit, delete records live.</div>
+                </div>
+                <div class="act-card" onclick="showActivity('act12')">
+                    <div class="act-card-label">Activity 12</div>
+                    <div class="act-card-icon">🔐</div>
+                    <div class="act-card-name">Session</div>
+                    <div class="act-card-desc">Members-only area with login/logout session management.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ ACTIVITY 1 ════════════════════════ -->
+        <section class="activity-section" id="act1">
+            <div class="act-header">
+                <div class="act-header-label">Activity 01</div>
+                <h2>Basic HTML</h2>
+                <p>Fundamental HTML structure &amp; elements</p>
+            </div>
+            <div class="exercises-list">
+
+                <div class="exercise" id="ex-01">
+                    <div class="ex-top">
+                        <div class="ex-badge">01</div>
+                        <div class="ex-title">Print Name to Screen</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;body&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Baradillo Jiame<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/body&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body" style="font-size:22px;font-weight:700;">Baradillo Jiame</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-02">
+                    <div class="ex-top">
+                        <div class="ex-badge">02</div>
+                        <div class="ex-title">Print Numbers 1–10</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;p&gt;</span>1 2 3 4 5 6 7 8 9 10<span class="tag">&lt;/p&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body"
+                                style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;letter-spacing:4px;">
+                                1 2 3 4 5 6 7 8 9 10</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-03">
+                    <div class="ex-top">
+                        <div class="ex-badge">03</div>
+                        <div class="ex-title">Set Page Title</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;title&gt;</span>This is a webpage<span class="tag">&lt;/title&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body">Browser tab title is set to <em
+                                    style="color:var(--accent1);font-style:normal;font-weight:600;">"Baradillo Jiame
+                                    Uchiha | WebDev Portfolio"</em></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-04">
+                    <div class="ex-top">
+                        <div class="ex-badge">04</div>
+                        <div class="ex-title">Page Creation Date in Title</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;title&gt;</span>Created: March 16, 2026<span class="tag">&lt;/title&gt;</span>
+<span class="tag">&lt;p&gt;</span>Check the title for the date.<span class="tag">&lt;/p&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body">Page created: <strong>Monday, March 16, 2026</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-05">
+                    <div class="ex-top">
+                        <div class="ex-badge">05</div>
+                        <div class="ex-title">Text Without Head Section</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;body&gt;</span>
+  <span class="tag">&lt;p&gt;</span>This text has no head section.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/body&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body">This text is displayed without a head section in the code structure.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-06">
+                    <div class="ex-top">
+                        <div class="ex-badge">06</div>
+                        <div class="ex-title">Text With Head Section</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;html&gt;&lt;head&gt;&lt;title&gt;</span>My Page<span class="tag">&lt;/title&gt;&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;&lt;p&gt;</span>Text with a head section.<span class="tag">&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body">This text is displayed with a proper head section in the code.</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <a href="#" class="back-btn" onclick="showHome()">Back to Home</a>
+        </section>
+
+        <!-- ═══ ACTIVITY 2 ════════════════════════ -->
+        <section class="activity-section" id="act2">
+            <div class="act-header">
+                <div class="act-header-label">Activity 02</div>
+                <h2>Text Styling</h2>
+                <p>Colors, fonts &amp; heading sizes</p>
+            </div>
+            <div class="exercises-list">
+
+                <div class="exercise" id="ex-07">
+                    <div class="ex-top">
+                        <div class="ex-badge">07</div>
+                        <div class="ex-title">Name in Green</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;p</span> <span class="attr">style=</span><span class="val">"color:green"</span><span class="tag">&gt;</span>Baradillo Jiame<span class="tag">&lt;/p&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body"><span class="name-green">Baradillo Jiame</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-08">
+                    <div class="ex-top">
+                        <div class="ex-badge">08</div>
+                        <div class="ex-title">Numbers 1–10 in Different Colors</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;span</span> <span class="attr">style=</span><span class="val">"color:red"</span><span class="tag">&gt;</span>1<span class="tag">&lt;/span&gt;</span>
+<span class="tag">&lt;span</span> <span class="attr">style=</span><span class="val">"color:orange"</span><span class="tag">&gt;</span>2<span class="tag">&lt;/span&gt;</span>
+<span class="cmt">&lt;!-- ...and so on --&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body">
+                                <div class="color-nums"><span style="color:#f87171">1</span><span
+                                        style="color:#fb923c">2</span><span style="color:#facc15">3</span><span
+                                        style="color:#4ade80">4</span><span style="color:#34d399">5</span><span
+                                        style="color:#22d3ee">6</span><span style="color:#60a5fa">7</span><span
+                                        style="color:#a78bfa">8</span><span style="color:#f472b6">9</span><span
+                                        style="color:#7c3aed">10</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-09">
+                    <div class="ex-top">
+                        <div class="ex-badge">09</div>
+                        <div class="ex-title">Name in Tahoma Font</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;p</span> <span class="attr">style=</span><span class="val">"font-family:Tahoma"</span><span class="tag">&gt;</span>Baradillo Jiame<span class="tag">&lt;/p&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body"><span class="name-tahoma">Baradillo Jiame</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-10">
+                    <div class="ex-top">
+                        <div class="ex-badge">10</div>
+                        <div class="ex-title">Paragraph with Different Fonts</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;p</span> <span class="attr">style=</span><span class="val">"font-family:Arial"</span><span class="tag">&gt;</span>Arial.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p</span> <span class="attr">style=</span><span class="val">"font-family:Georgia"</span><span class="tag">&gt;</span>Georgia.<span class="tag">&lt;/p&gt;</span>
+<span class="cmt">&lt;!-- Courier, Comic Sans, Trebuchet --&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body multi-font">
+                                <p style="font-family:Arial,sans-serif">First sentence in <strong>Arial</strong>.</p>
+                                <p style="font-family:Georgia,serif">Second in <strong>Georgia</strong>.</p>
+                                <p style="font-family:'Courier New',monospace">Third in <strong>Courier New</strong>.
+                                </p>
+                                <p style="font-family:'Comic Sans MS',cursive">Fourth in <strong>Comic Sans</strong>.
+                                </p>
+                                <p style="font-family:'Trebuchet MS',sans-serif">Fifth in <strong>Trebuchet MS</strong>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-11">
+                    <div class="ex-top">
+                        <div class="ex-badge">11</div>
+                        <div class="ex-title">Book Description with Formatting</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;em&gt;</span>The Shinobi Chronicles<span class="tag">&lt;/em&gt;</span> by
+<span class="tag">&lt;u&gt;</span>Baradillo Jiame<span class="tag">&lt;/u&gt;</span> is a
+<span class="tag">&lt;b&gt;&lt;i&gt;</span>profound<span class="tag">&lt;/i&gt;&lt;/b&gt;</span> tale...</pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body book-desc"><em>The Shinobi Chronicles</em> by <span
+                                    class="underline">Baradillo Jiame</span> is a <em>profound</em> and <em>epic</em> tale
+                                set in the <em>hidden ninja villages</em> during the Warring States Period.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-12">
+                    <div class="ex-top">
+                        <div class="ex-badge">12</div>
+                        <div class="ex-title">Name with Different Heading Sizes</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;h1&gt;</span>B<span class="tag">&lt;/h1&gt;&lt;h2&gt;</span>A<span class="tag">&lt;/h2&gt;&lt;h3&gt;</span>R<span class="tag">&lt;/h3&gt;</span>
+<span class="tag">&lt;h4&gt;</span>A<span class="tag">&lt;/h4&gt;&lt;h5&gt;</span>D<span class="tag">&lt;/h5&gt;&lt;h6&gt;</span>I<span class="tag">&lt;/h6&gt;</span>
+<span class="cmt">&lt;!-- same for BARADILLO JIAME --&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body">
+                                <div class="heading-name"><span style="font-size:36px">B</span><span
+                                        style="font-size:30px">A</span><span style="font-size:24px">R</span><span
+                                        style="font-size:20px">A</span><span style="font-size:16px">D</span><span
+                                        style="font-size:13px">I</span>&nbsp;<span style="font-size:36px">J</span><span
+                                        style="font-size:30px">I</span><span style="font-size:24px">A</span><span
+                                        style="font-size:20px">M</span><span style="font-size:16px">E</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <a href="#" class="back-btn" onclick="showHome()">Back to Home</a>
+        </section>
+
+        <!-- ═══ ACTIVITY 3 ════════════════════════ -->
+        <section class="activity-section" id="act3">
+            <div class="act-header">
+                <div class="act-header-label">Activity 03</div>
+                <h2>Text Formatting</h2>
+                <p>Lists, quotes, addresses &amp; more</p>
+            </div>
+            <div class="exercises-list">
+
+                <div class="exercise" id="ex-13">
+                    <div class="ex-top">
+                        <div class="ex-badge">13</div>
+                        <div class="ex-title">Squares of Numbers 1–20</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;p&gt;</span>1<span class="tag">&lt;sup&gt;</span>2<span class="tag">&lt;/sup&gt;</span> = 1<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span>2<span class="tag">&lt;sup&gt;</span>2<span class="tag">&lt;/sup&gt;</span> = 4<span class="tag">&lt;/p&gt;</span>
+<span class="cmt">&lt;!-- ...up to 20 --&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body">
+                                <div class="squares-grid"><span class="sq-item">1²=1</span><span
+                                        class="sq-item">11²=121</span><span class="sq-item">2²=4</span><span
+                                        class="sq-item">12²=144</span><span class="sq-item">3²=9</span><span
+                                        class="sq-item">13²=169</span><span class="sq-item">4²=16</span><span
+                                        class="sq-item">14²=196</span><span class="sq-item">5²=25</span><span
+                                        class="sq-item">15²=225</span><span class="sq-item">6²=36</span><span
+                                        class="sq-item">16²=256</span><span class="sq-item">7²=49</span><span
+                                        class="sq-item">17²=289</span><span class="sq-item">8²=64</span><span
+                                        class="sq-item">18²=324</span><span class="sq-item">9²=81</span><span
+                                        class="sq-item">19²=361</span><span class="sq-item">10²=100</span><span
+                                        class="sq-item">20²=400</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-14">
+                    <div class="ex-top">
+                        <div class="ex-badge">14</div>
+                        <div class="ex-title">Alphabetized Names List</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;ol&gt;</span> <span class="cmt">&lt;!-- unsorted list --&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Michael<span class="tag">&lt;sub&gt;</span>5<span class="tag">&lt;/sub&gt;&lt;/li&gt;</span>
+  <span class="cmt">&lt;!-- more names... --&gt;</span>
+<span class="tag">&lt;/ol&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body">
+                                <div class="names-grid">
+                                    <div class="names-col">
+                                        <h4>Unsorted</h4>
+                                        <ol>
+                                            <li>Michael<sub>5</sub></li>
+                                            <li>Sarah<sub>7</sub></li>
+                                            <li>David<sub>2</sub></li>
+                                            <li>Jennifer<sub>4</sub></li>
+                                            <li>Christopher<sub>1</sub></li>
+                                        </ol>
+                                    </div>
+                                    <div class="names-col">
+                                        <h4>Alphabetized</h4>
+                                        <ol>
+                                            <li>Amanda<sub>3</sub></li>
+                                            <li>Christopher<sub>1</sub></li>
+                                            <li>David<sub>2</sub></li>
+                                            <li>Elizabeth<sub>10</sub></li>
+                                            <li>Jennifer<sub>4</sub></li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-15">
+                    <div class="ex-top">
+                        <div class="ex-badge">15</div>
+                        <div class="ex-title">Indented Paragraphs Using &amp;nbsp;</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;p&gt;</span><span class="val">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</span>First paragraph...<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span><span class="val">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</span>Second paragraph...<span class="tag">&lt;/p&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body" style="font-size:14px;line-height:1.7;">
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;First indented paragraph using &amp;nbsp;. Demonstrates
+                                    indentation without CSS.</p>
+                                <p style="margin-top:6px;">&nbsp;&nbsp;&nbsp;&nbsp;Second paragraph also indented the
+                                    same way.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-16">
+                    <div class="ex-top">
+                        <div class="ex-badge">16</div>
+                        <div class="ex-title">Ordered and Unordered Lists</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;ol&gt;&lt;li&gt;</span>Learn HTML &amp; CSS<span class="tag">&lt;/li&gt;&lt;/ol&gt;</span>
+<span class="tag">&lt;ul&gt;&lt;li&gt;</span>VS Code<span class="tag">&lt;/li&gt;&lt;/ul&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body">
+                                <div class="list-duo">
+                                    <div>
+                                        <h4>Web System Roadmap</h4>
+                                        <ol>
+                                            <li>Learn HTML &amp; CSS</li>
+                                            <li>Master JavaScript</li>
+                                            <li>Responsive design</li>
+                                            <li>Front-end framework</li>
+                                        </ol>
+                                    </div>
+                                    <div>
+                                        <h4>Essential Tools</h4>
+                                        <ul>
+                                            <li>VS Code</li>
+                                            <li>Git &amp; GitHub</li>
+                                            <li>Chrome DevTools</li>
+                                            <li>Node.js &amp; npm</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-17">
+                    <div class="ex-top">
+                        <div class="ex-badge">17</div>
+                        <div class="ex-title">Heading with Horizontal Line</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;h1&gt;</span>The Future of Web Systems<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;hr</span> <span class="attr">width=</span><span class="val">"100%"</span><span class="tag">/&gt;</span>
+<span class="tag">&lt;p&gt;</span>Web systems continue to evolve...<span class="tag">&lt;/p&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body">
+                                <h3 style="font-size:20px;font-weight:700;margin-bottom:8px;">The Future of Web Systems
+                                </h3>
+                                <hr style="border:none;border-top:1px solid rgba(200,190,255,.4);margin-bottom:10px;" />
+                                <p style="font-size:14px;color:var(--muted);line-height:1.6;">Web systems continue to
+                                    evolve at a rapid pace, with AI integration and WebAssembly shaping the next
+                                    generation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-18">
+                    <div class="ex-top">
+                        <div class="ex-badge">18</div>
+                        <div class="ex-title">Preformatted Text</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;pre&gt;</span>
+  +-------------------+
+  |  HTML STRUCTURE   |
+  +-------------------+
+<span class="tag">&lt;/pre&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body">
+                                <pre
+                                    style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#065f46;line-height:1.7;background:rgba(6,95,70,.05);border:1px solid rgba(6,95,70,.12);padding:12px;border-radius:8px;">+---------------------+
+|   HTML STRUCTURE    |
++---------------------+
+|  &lt;!DOCTYPE html&gt;   |
+|  &lt;html&gt;            |
+|    &lt;head&gt;...       |
+|    &lt;body&gt;...       |
+|  &lt;/html&gt;           |
++---------------------+</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-19">
+                    <div class="ex-top">
+                        <div class="ex-badge">19</div>
+                        <div class="ex-title">Short and Long Quotes</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;blockquote&gt;</span>
+  "The web as I envisaged it..."
+  <span class="tag">&lt;cite&gt;</span>— Tim Berners-Lee<span class="tag">&lt;/cite&gt;</span>
+<span class="tag">&lt;/blockquote&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body">
+                                <blockquote>
+                                    <p>"The web as I envisaged it, we have not seen it yet."</p><cite>— Tim
+                                        Berners-Lee</cite>
+                                </blockquote>
+                                <blockquote style="margin-top:10px;">
+                                    <p>"Any application that can be written in JavaScript, will eventually be written in
+                                        JavaScript."</p><cite>— Jeff Atwood</cite>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-20">
+                    <div class="ex-top">
+                        <div class="ex-badge">20</div>
+                        <div class="ex-title">Deleted and Inserted Text</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;del&gt;</span>December 15<span class="tag">&lt;/del&gt;</span>
+<span class="tag">&lt;ins&gt;</span>January 15, 2024<span class="tag">&lt;/ins&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body del-ins">
+                                <div>Deadline: <del>December 15, 2023</del> <span class="arrow">→</span> <ins>January
+                                        15, 2024</ins></div>
+                                <div>Framework: <del>jQuery</del> <span class="arrow">→</span> <ins>React.js</ins></div>
+                                <div>Passwords: <del>plain text</del> <span class="arrow">→</span> <ins>encrypted</ins>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-21">
+                    <div class="ex-top">
+                        <div class="ex-badge">21</div>
+                        <div class="ex-title">Definition List (5 Items)</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;dl&gt;</span>
+  <span class="tag">&lt;dt&gt;</span>HTML<span class="tag">&lt;/dt&gt;</span>
+  <span class="tag">&lt;dd&gt;</span>HyperText Markup Language<span class="tag">&lt;/dd&gt;</span>
+  <span class="cmt">&lt;!-- 4 more items --&gt;</span>
+<span class="tag">&lt;/dl&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body">
+                                <dl class="def-list">
+                                    <dt>HTML</dt>
+                                    <dd>HyperText Markup Language — standard markup language.</dd>
+                                    <dt>CSS</dt>
+                                    <dd>Cascading Style Sheets — presentation language.</dd>
+                                    <dt>JavaScript</dt>
+                                    <dd>Enables interactive web pages.</dd>
+                                    <dt>API</dt>
+                                    <dd>Application Programming Interface.</dd>
+                                    <dt>Responsive Design</dt>
+                                    <dd>Web pages that work on all screen sizes.</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-22">
+                    <div class="ex-top">
+                        <div class="ex-badge">22</div>
+                        <div class="ex-title">Address Format (Envelope Style)</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;address&gt;</span>
+  <span class="tag">&lt;b&gt;</span>Baradillo Jiame<span class="tag">&lt;/b&gt;</span>&lt;br&gt;
+  123 Developer Street, Philippines
+<span class="tag">&lt;/address&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body">
+                                <div class="address-grid">
+                                    <div class="addr-card">
+                                        <div class="addr-label">Sender</div><strong>Baradillo Jiame</strong><br>123
+                                        Developer Street<br>Code City, CC 90210<br>Philippines
+                                    </div>
+                                    <div class="addr-card" style="text-align:center;">
+                                        <div class="addr-label" style="text-align:center;">Receiver</div><strong>Web
+                                            System Institute</strong><br>456 Internet Avenue<br>Browser Town, BT
+                                        45678<br>Philippines
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-23">
+                    <div class="ex-top">
+                        <div class="ex-badge">23</div>
+                        <div class="ex-title">Acronyms and Abbreviations</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;abbr</span> <span class="attr">title=</span><span class="val">"HyperText Markup Language"</span><span class="tag">&gt;</span>HTML<span class="tag">&lt;/abbr&gt;</span>
+<span class="cmt">&lt;!-- 9 more abbreviations --&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body">
+                                <div class="abbr-list">
+                                    <div class="abbr-item"><abbr>HTML</abbr><span>HyperText Markup Language.</span>
+                                    </div>
+                                    <div class="abbr-item"><abbr>CSS</abbr><span>Cascading Style Sheets.</span></div>
+                                    <div class="abbr-item"><abbr>JS</abbr><span>JavaScript — interactive web
+                                            pages.</span></div>
+                                    <div class="abbr-item"><abbr>API</abbr><span>Application Programming
+                                            Interface.</span></div>
+                                    <div class="abbr-item"><abbr>URL</abbr><span>Uniform Resource Locator.</span></div>
+                                    <div class="abbr-item"><abbr>SEO</abbr><span>Search Engine Optimization.</span>
+                                    </div>
+                                    <div class="abbr-item"><abbr>UI</abbr><span>User Interface.</span></div>
+                                    <div class="abbr-item"><abbr>UX</abbr><span>User Experience.</span></div>
+                                    <div class="abbr-item"><abbr>CMS</abbr><span>Content Management System.</span></div>
+                                    <div class="abbr-item"><abbr>RWD</abbr><span>Responsive Web Design.</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <a href="#" class="back-btn" onclick="showHome()">Back to Home</a>
+        </section>
+
+        <!-- ═══ ACTIVITY 4 ════════════════════════ -->
+        <section class="activity-section" id="act4">
+            <div class="act-header">
+                <div class="act-header-label">Activity 04</div>
+                <h2>Links</h2>
+                <p>Hyperlinks &amp; navigation implementation</p>
+            </div>
+            <div class="exercises-list">
+
+                <div class="exercise" id="ex-l1">
+                    <div class="ex-top">
+                        <div class="ex-badge">01</div>
+                        <div class="ex-title">Links to Various Search Engines</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"https://google.com"</span><span class="tag">&gt;</span>Google<span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"https://yahoo.com"</span><span class="tag">&gt;</span>Yahoo<span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"https://bing.com"</span><span class="tag">&gt;</span>Bing<span class="tag">&lt;/a&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body">
+                                <a href="https://www.google.com" target="_blank" class="img-link-demo">
+                                    <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=500&h=300&fit=crop"
+                                        alt="Ocean" style="max-width: 400px; border-radius: 16px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);" />
+                                </a>
+                                <div class="img-hint" style="margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px;">↗ Click image to open Google</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-l2">
+                    <div class="ex-top">
+                        <div class="ex-badge">02</div>
+                        <div class="ex-title">Five Different Websites (New Window)</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"https://github.com"</span>
+   <span class="attr">target=</span><span class="val">"_blank"</span><span class="tag">&gt;</span>GitHub<span class="tag">&lt;/a&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body">
+                                <div class="link-group"><a href="https://en.wikipedia.org" target="_blank"
+                                        class="ext-link">Wikipedia</a><a href="https://github.com" target="_blank"
+                                        class="ext-link">GitHub</a><a href="https://stackoverflow.com" target="_blank"
+                                        class="ext-link">Stack Overflow</a><a href="https://www.w3schools.com"
+                                        target="_blank" class="ext-link">W3Schools</a><a
+                                        href="https://www.freecodecamp.org" target="_blank"
+                                        class="ext-link">freeCodeCamp</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-l3">
+                    <div class="ex-top">
+                        <div class="ex-badge">03</div>
+                        <div class="ex-title">Jump to Bottom of Page</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"#bottom"</span><span class="tag">&gt;</span>Jump to Bottom<span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">id=</span><span class="val">"bottom"</span><span class="tag">&gt;&lt;/a&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"#"</span><span class="tag">&gt;</span>Back to Top<span class="tag">&lt;/a&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body">
+                                <div class="jump-demo">
+                                    <div class="jd-top" id="act4-top"><span><strong>TOP</strong></span><a
+                                            href="javascript:void(0)" onclick="scrollToElement('act4-bottom')" class="jump-link">↓ Jump to Bottom</a></div>
+                                    <div class="jd-mid">· · · scroll area · · ·</div>
+                                    <div class="jd-bot" id="act4-bottom"><span>Reached <strong>BOTTOM</strong></span><a
+                                            href="javascript:void(0)" onclick="scrollToElement('act4-top')" class="jump-link">↑ Back to Top</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-l4">
+                    <div class="ex-top">
+                        <div class="ex-badge">04</div>
+                        <div class="ex-title">Jump to Top of Page</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"#top"</span><span class="tag">&gt;</span>Jump to Top<span class="tag">&lt;/a&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body">
+                                <p style="font-size:13px;color:var(--muted);">You're at the bottom. <a href="javascript:void(0)" onclick="window.scrollTo({top:0, behavior:'smooth'})"
+                                        class="jump-link">↑ Jump to Top</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-l5">
+                    <div class="ex-top">
+                        <div class="ex-badge">05</div>
+                        <div class="ex-title">Two-way Page Navigation</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;a</span> <span class="attr">id=</span><span class="val">"top"</span><span class="tag">&gt;&lt;/a&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"#bottom"</span><span class="tag">&gt;</span>Go to Bottom<span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">id=</span><span class="val">"bottom"</span><span class="tag">&gt;&lt;/a&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"#top"</span><span class="tag">&gt;</span>Go to Top<span class="tag">&lt;/a&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body">
+                                <div class="jump-demo">
+                                    <div class="jd-top" id="twoway-top"><strong>TOP</strong> — <a href="javascript:void(0)" onclick="scrollToElement('twoway-bottom')"
+                                            class="jump-link">↓ Go to Bottom</a></div>
+                                    <div class="jd-mid">two-way navigation demo</div>
+                                    <div class="jd-bot" id="twoway-bottom"><strong>BOTTOM</strong> — <a
+                                            href="javascript:void(0)" onclick="scrollToElement('twoway-top')" class="jump-link">↑ Go to Top</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <a href="#" class="back-btn" onclick="showHome()">Back to Home</a>
+        </section>
+
+        <!-- ═══ ACTIVITY 5 ════════════════════════ -->
+        <section class="activity-section" id="act5">
+            <div class="act-header">
+                <div class="act-header-label">Activity 05</div>
+                <h2>Images</h2>
+                <p>Galleries, borders &amp; image links</p>
+            </div>
+            <div class="exercises-list">
+
+                <div class="exercise" id="ex-i1">
+                    <div class="ex-top">
+                        <div class="ex-badge">01</div>
+                        <div class="ex-title">Five Different Images with Titles</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;img</span> <span class="attr">src=</span><span class="val">"forest.jpg"</span> <span class="attr">title=</span><span class="val">"Forest"</span><span class="tag">/&gt;</span>
+<span class="cmt">&lt;!-- + 4 more images --&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body">
+                                <div class="img-gallery">
+                                    <div class="img-card"><img
+                                            src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=300&h=220&fit=crop"
+                                            alt="Forest" />
+                                        <div class="img-card-label">🌲 Forest</div>
+                                    </div>
+                                    <div class="img-card"><img
+                                            src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=300&h=220&fit=crop"
+                                            alt="Ocean" />
+                                        <div class="img-card-label">🌊 Ocean</div>
+                                    </div>
+                                    <div class="img-card"><img
+                                            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=300&h=220&fit=crop"
+                                            alt="Mountain" />
+                                        <div class="img-card-label">⛰️ Mountain</div>
+                                    </div>
+                                    <div class="img-card"><img
+                                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=220&fit=crop"
+                                            alt="Sunset" />
+                                        <div class="img-card-label">🌅 Sunset</div>
+                                    </div>
+                                    <div class="img-card"><img
+                                            src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=300&h=220&fit=crop"
+                                            alt="Nature" />
+                                        <div class="img-card-label">🌿 Nature</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-i2">
+                    <div class="ex-top">
+                        <div class="ex-badge">02</div>
+                        <div class="ex-title">Image with Border, Width 200px &amp; Height 200px</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span
+                                        class="dot dot-y"></span><span class="dot dot-g"></span><span
+                                        class="code-header-label">⌨ Code</span></div><button class="copy-btn"
+                                    onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;img</span> <span class="attr">src=</span><span class="val">"forest.jpg"</span>
+  <span class="attr">border=</span><span class="val">"2"</span> <span class="attr">width=</span><span class="val">"200"</span> <span class="attr">height=</span><span class="val">"200"</span><span class="tag">/&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button
+                                    class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span>
+                                    View Code</button></div>
+                            <div class="out-body"><img
+                                    src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=200&h=200&fit=crop"
+                                    alt="Forest" class="img-bordered" />
+                                <div class="img-hint">border:2px · width:200px · height:200px</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-i3">
+                    <div class="ex-top">
+                        <div class="ex-badge">03</div>
+                        <div class="ex-title">Image Linking to Search Engine (New Window)</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="code-header-label">⌨ Code</span></div><button class="copy-btn" onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"https://google.com"</span> <span class="attr">target=</span><span class="val">"_blank"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;img</span> <span class="attr">src=</span><span class="val">"beach.jpg"</span> <span class="attr">width=</span><span class="val">"500"</span><span class="tag">/&gt;</span>
+<span class="tag">&lt;/a&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span> View Code</button></div>
+                            <div class="out-body">
+                                <a href="https://www.google.com" target="_blank" class="img-link-demo">
+                                    <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=500&h=300&fit=crop"
+                                        alt="Ocean" style="max-width: 400px; border-radius: 16px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);" />
+                                </a>
+                                <div class="img-hint" style="margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px;">↗ Click image to open Google</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exercise" id="ex-i4">
+                    <div class="ex-top">
+                        <div class="ex-badge">04</div>
+                        <div class="ex-title">Image Linking to Itself (Full Size)</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="code-header-label">⌨ Code</span></div><button class="copy-btn" onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"mountain.jpg"</span> <span class="attr">target=</span><span class="val">"_blank"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;img</span> <span class="attr">src=</span><span class="val">"mountain.jpg"</span> <span class="attr">width=</span><span class="val">"500"</span><span class="tag">/&gt;</span>
+<span class="tag">&lt;/a&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span> View Code</button></div>
+                            <div class="out-body">
+                                <a href="javascript:void(0)" onclick="openLightbox('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b')" class="img-link-demo">
+                                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500&h=300&fit=crop"
+                                        alt="Mountain" style="max-width: 400px; border-radius: 16px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);" />
+                                </a>
+                                <div class="img-hint" style="margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px;">↗ Click to view full size</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <a href="#" class="back-btn" onclick="showHome()">Back to Home</a>
+        </section>
+
+        <!-- ═══ ACTIVITY 6: CSS MARGIN ════════════ -->
+        <section class="activity-section" id="act6">
+            <div class="act-header">
+                <div class="act-header-label">Activity 06</div>
+                <h2>CSS Margin</h2>
+                <p>Controlling space outside elements with margin properties</p>
+            </div>
+            <div class="exercises-list">
+                <div class="exercise">
+                    <div class="ex-top">
+                        <div class="ex-badge">01</div>
+                        <div class="ex-title">Margin Property Demonstration</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="code-header-label">⌨ Code</span></div><button class="copy-btn" onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;div</span> <span class="attr">style=</span><span class="val">"margin-top: 20px"</span><span class="tag">&gt;</span>Top<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">style=</span><span class="val">"margin-right: 40px"</span><span class="tag">&gt;</span>Right<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">style=</span><span class="val">"margin-bottom: 30px"</span><span class="tag">&gt;</span>Bottom<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">style=</span><span class="val">"margin-left: 50px"</span><span class="tag">&gt;</span>Left<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">style=</span><span class="val">"margin: 10px 20px 30px 40px"</span><span class="tag">&gt;</span>Shorthand<span class="tag">&lt;/div&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span> View Code</button></div>
+                            <div class="out-body">
+                                <div class="css-demo-row">
+                                    <div class="css-demo-box" style="margin-top: 20px;"><div class="css-demo-label">margin-top</div>20px</div>
+                                    <div class="css-demo-box" style="margin-right: 40px;"><div class="css-demo-label">margin-right</div>40px</div>
+                                    <div class="css-demo-box" style="margin-bottom: 30px;"><div class="css-demo-label">margin-bottom</div>30px</div>
+                                    <div class="css-demo-box" style="margin-left: 50px;"><div class="css-demo-label">margin-left</div>50px</div>
+                                </div>
+                                <div class="css-demo-row" style="margin-top:12px;">
+                                    <div class="css-demo-box" style="margin: 10px 20px 30px 40px; flex:1;"><div class="css-demo-label">Shorthand</div>margin: 10px 20px 30px 40px</div>
+                                </div>
+                                <div class="css-demo-row" style="margin-top:12px;">
+                                    <div class="css-demo-box" style="margin: 0 auto; width: 60%;"><div class="css-demo-label">Auto Center</div>margin: 0 auto</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="style-gallery">
+                <div class="sg-title">✦ Style Gallery — Margin</div>
+                <div class="sg-grid">
+                    <div class="sg-card"><div class="sg-card-label">margin-top</div><div class="sg-card-demo"><div style="background:var(--accent1);opacity:0.2;height:20px;border-radius:4px;margin-bottom:4px;"></div><div style="background:var(--accent1);height:30px;border-radius:6px;"></div></div></div>
+                    <div class="sg-card"><div class="sg-card-label">margin-right</div><div class="sg-card-demo"><div style="background:var(--accent1);height:30px;border-radius:6px;margin-right:30px;"></div></div></div>
+                    <div class="sg-card"><div class="sg-card-label">margin-bottom</div><div class="sg-card-demo"><div style="background:var(--accent1);height:30px;border-radius:6px;margin-bottom:20px;"></div><div style="background:var(--accent1);opacity:0.2;height:20px;border-radius:4px;"></div></div></div>
+                    <div class="sg-card"><div class="sg-card-label">margin: 0 auto</div><div class="sg-card-demo"><div style="background:var(--accent1);height:30px;border-radius:6px;width:60%;margin:0 auto;"></div></div></div>
+                </div>
+            </div>
+            <a href="#" class="back-btn" onclick="showHome()">Back to Home</a>
+        </section>
+
+        <!-- ═══ ACTIVITY 7: CSS PADDING ═══════════ -->
+        <section class="activity-section" id="act7">
+            <div class="act-header">
+                <div class="act-header-label">Activity 07</div>
+                <h2>CSS Padding (Left)</h2>
+                <p>Inner spacing with padding-left and general padding properties</p>
+            </div>
+            <div class="exercises-list">
+                <div class="exercise">
+                    <div class="ex-top">
+                        <div class="ex-badge">01</div>
+                        <div class="ex-title">Padding-Left Demonstration</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="code-header-label">⌨ Code</span></div><button class="copy-btn" onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;p</span> <span class="attr">style=</span><span class="val">"padding-left: 10px"</span><span class="tag">&gt;</span>10px left<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p</span> <span class="attr">style=</span><span class="val">"padding-left: 30px"</span><span class="tag">&gt;</span>30px left<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p</span> <span class="attr">style=</span><span class="val">"padding-left: 60px"</span><span class="tag">&gt;</span>60px left<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">style=</span><span class="val">"padding: 20px 30px 20px 50px"</span><span class="tag">&gt;</span>All sides<span class="tag">&lt;/div&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span> View Code</button></div>
+                            <div class="out-body">
+                                <div style="display:flex;flex-direction:column;gap:10px;">
+                                    <div class="css-demo-box" style="padding-left:10px;text-align:left;"><div class="css-demo-label">padding-left: 10px</div>← 10px indent</div>
+                                    <div class="css-demo-box" style="padding-left:30px;text-align:left;"><div class="css-demo-label">padding-left: 30px</div>← 30px indent</div>
+                                    <div class="css-demo-box" style="padding-left:60px;text-align:left;"><div class="css-demo-label">padding-left: 60px</div>← 60px indent</div>
+                                    <div class="css-demo-box" style="padding:20px 30px 20px 50px;text-align:left;"><div class="css-demo-label">Shorthand padding</div>T:20 R:30 B:20 L:50</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="style-gallery">
+                <div class="sg-title">✦ Style Gallery — Padding</div>
+                <div class="sg-grid">
+                    <div class="sg-card"><div class="sg-card-label">padding-left: 10px</div><div class="sg-card-demo"><div style="border-left:10px solid var(--accent1);background:rgba(16,185,129,0.08);padding:8px 12px;border-radius:0 6px 6px 0;font-size:12px;">Content</div></div></div>
+                    <div class="sg-card"><div class="sg-card-label">padding-left: 30px</div><div class="sg-card-demo"><div style="border-left:30px solid var(--accent1);background:rgba(16,185,129,0.08);padding:8px 12px;border-radius:0 6px 6px 0;font-size:12px;">Content</div></div></div>
+                    <div class="sg-card"><div class="sg-card-label">padding-left: 60px</div><div class="sg-card-demo"><div style="border-left:60px solid var(--accent1);background:rgba(16,185,129,0.08);padding:8px 12px;border-radius:0 6px 6px 0;font-size:12px;">Content</div></div></div>
+                    <div class="sg-card"><div class="sg-card-label">padding: uniform</div><div class="sg-card-demo"><div style="border:3px solid var(--accent1);background:rgba(16,185,129,0.08);padding:20px;border-radius:6px;font-size:12px;text-align:center;">20px all</div></div></div>
+                </div>
+            </div>
+            <a href="#" class="back-btn" onclick="showHome()">Back to Home</a>
+        </section>
+
+        <!-- ═══ ACTIVITY 8: CSS OUTLINE ═══════════ -->
+        <section class="activity-section" id="act8">
+            <div class="act-header">
+                <div class="act-header-label">Activity 08</div>
+                <h2>CSS Outline</h2>
+                <p>Outline styles, colors, width and offset properties</p>
+            </div>
+            <div class="exercises-list">
+                <div class="exercise">
+                    <div class="ex-top">
+                        <div class="ex-badge">01</div>
+                        <div class="ex-title">Outline Property Variations</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="code-header-label">⌨ Code</span></div><button class="copy-btn" onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;p</span> <span class="attr">style=</span><span class="val">"outline: 2px solid green"</span><span class="tag">&gt;</span>Solid<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p</span> <span class="attr">style=</span><span class="val">"outline: 3px dashed blue"</span><span class="tag">&gt;</span>Dashed<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p</span> <span class="attr">style=</span><span class="val">"outline: 4px dotted red"</span><span class="tag">&gt;</span>Dotted<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p</span> <span class="attr">style=</span><span class="val">"outline: 3px double #333; outline-offset: 5px"</span><span class="tag">&gt;</span>Double + Offset<span class="tag">&lt;/p&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span> View Code</button></div>
+                            <div class="out-body">
+                                <div class="css-demo-row">
+                                    <div class="css-demo-box" style="outline:2px solid #059669;border:none;"><div class="css-demo-label">Solid</div>outline: 2px solid</div>
+                                    <div class="css-demo-box" style="outline:3px dashed #2563eb;border:none;"><div class="css-demo-label">Dashed</div>outline: 3px dashed</div>
+                                </div>
+                                <div class="css-demo-row">
+                                    <div class="css-demo-box" style="outline:4px dotted #dc2626;border:none;"><div class="css-demo-label">Dotted</div>outline: 4px dotted</div>
+                                    <div class="css-demo-box" style="outline:3px double #7c3aed;outline-offset:5px;border:none;"><div class="css-demo-label">Double + Offset</div>outline-offset: 5px</div>
+                                </div>
+                                <div class="css-demo-row">
+                                    <div class="css-demo-box" style="outline:3px groove #059669;border:none;"><div class="css-demo-label">Groove</div>outline: groove</div>
+                                    <div class="css-demo-box" style="outline:3px ridge #f59e0b;border:none;"><div class="css-demo-label">Ridge</div>outline: ridge</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="style-gallery">
+                <div class="sg-title">✦ Style Gallery — Outline</div>
+                <div class="sg-grid">
+                    <div class="sg-card"><div class="sg-card-label">Solid</div><div class="sg-card-demo"><div style="outline:2px solid #059669;padding:12px;border-radius:6px;font-size:12px;text-align:center;">Element</div></div></div>
+                    <div class="sg-card"><div class="sg-card-label">Dashed</div><div class="sg-card-demo"><div style="outline:3px dashed #2563eb;padding:12px;border-radius:6px;font-size:12px;text-align:center;">Element</div></div></div>
+                    <div class="sg-card"><div class="sg-card-label">Dotted</div><div class="sg-card-demo"><div style="outline:4px dotted #dc2626;padding:12px;border-radius:6px;font-size:12px;text-align:center;">Element</div></div></div>
+                    <div class="sg-card"><div class="sg-card-label">Offset</div><div class="sg-card-demo"><div style="outline:2px solid #7c3aed;outline-offset:5px;padding:12px;border-radius:6px;font-size:12px;text-align:center;">Element</div></div></div>
+                </div>
+            </div>
+            <a href="#" class="back-btn" onclick="showHome()">Back to Home</a>
+        </section>
+
+        <!-- ═══ ACTIVITY 9: CSS TABLES ════════════ -->
+        <section class="activity-section" id="act9">
+            <div class="act-header">
+                <div class="act-header-label">Activity 09</div>
+                <h2>CSS Table Styling</h2>
+                <p>Advanced table presentation with borders, hover & alternating colors</p>
+            </div>
+            <div class="exercises-list">
+                <div class="exercise">
+                    <div class="ex-top">
+                        <div class="ex-badge">01</div>
+                        <div class="ex-title">Table Design Implementation</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="code-header-label">⌨ Code</span></div><button class="copy-btn" onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;table&gt;</span>
+  <span class="tag">&lt;tr&gt;&lt;th&gt;</span>Item<span class="tag">&lt;/th&gt;&lt;th&gt;</span>Value<span class="tag">&lt;/th&gt;&lt;/tr&gt;</span>
+  <span class="tag">&lt;tr&gt;&lt;td&gt;</span>Data<span class="tag">&lt;/td&gt;&lt;td&gt;</span>100<span class="tag">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="tag">&lt;/table&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span> View Code</button></div>
+                            <div class="out-body">
+                                <table class="css-table-demo">
+                                    <thead>
+                                        <tr>
+                                            <th>Activity</th>
+                                            <th>Property</th>
+                                            <th>Demonstration</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>01</td>
+                                            <td>border-collapse</td>
+                                            <td>Clean, single-line borders</td>
+                                        </tr>
+                                        <tr>
+                                            <td>02</td>
+                                            <td>background-color</td>
+                                            <td>Alternating row colors (Zebra)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>03</td>
+                                            <td>hover</td>
+                                            <td>Row highlighting on interaction</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="back-btn" onclick="showHome()">Back to Home</a>
+        </section>
+
+        <!-- ═══ ACTIVITY 10: CSS DIMENSIONS ═════════ -->
+        <section class="activity-section" id="act10">
+            <div class="act-header">
+                <div class="act-header-label">Activity 10</div>
+                <h2>CSS Dimensions</h2>
+                <p>Controlling sizing with width, height and max/min properties</p>
+            </div>
+            <div class="exercises-list">
+                <div class="exercise">
+                    <div class="ex-top">
+                        <div class="ex-badge">01</div>
+                        <div class="ex-title">Dimension Constraints</div>
+                    </div>
+                    <div class="ex-panels">
+                        <div class="panel-code">
+                            <div class="code-header">
+                                <div class="code-header-left"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="code-header-label">⌨ Code</span></div><button class="copy-btn" onclick="copyCode(this)">⧉ Copy</button>
+                            </div>
+                            <pre><span class="tag">&lt;div</span> <span class="attr">style=</span><span class="val">"width: 100%; max-width: 300px; height: 100px"</span><span class="tag">&gt;</span>
+  Box with dimensions
+<span class="tag">&lt;/div&gt;</span></pre>
+                        </div>
+                        <div class="panel-output">
+                            <div class="out-header"><span class="out-header-label">▶ Output</span><button class="code-toggle-btn" onclick="toggleCode(this)"><span class="btn-icon">▷</span> View Code</button></div>
+                            <div class="out-body">
+                                <div class="css-demo-row">
+                                    <div class="css-demo-box" style="width: 150px; height: 60px; display:flex; align-items:center; justify-content:center;">
+                                        <div class="css-demo-label">Fixed</div>150x60px
+                                    </div>
+                                    <div class="css-demo-box" style="width: 100%; max-width: 200px; height: 60px; display:flex; align-items:center; justify-content:center;">
+                                        <div class="css-demo-label">Responsive</div>Max 200px
+                                    </div>
+                                </div>
+                                <div class="css-demo-row" style="margin-top:10px;">
+                                    <div class="css-demo-box" style="min-width: 250px; height: 60px; flex:1; display:flex; align-items:center; justify-content:center;">
+                                        <div class="css-demo-label">Min-Width</div>At least 250px
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="back-btn" onclick="showHome()">Back to Home</a>
+        </section>
+
+        <!-- ═══ ACTIVITY 11: DATABASE INTEGRATION ══════════ -->
+        <section class="activity-section" id="act11">
+            <div class="act-header">
+                <div class="act-header-label" style="color: var(--accent1);">Activity 11</div>
+                <h2>Database Integration</h2>
+                <p>Supabase-powered book management system — full CRUD operations</p>
+            </div>
+
+            <div class="exercise">
+                <div class="book-tracker-container">
+                    <style>
+                        .book-tracker-container {
+                            background: rgba(26, 16, 64, 0.03);
+                            border-radius: 20px;
+                            padding: 30px;
+                            color: var(--text);
+                        }
+
+                        /* Dark mode styling for book tracker */
+                        .dark .book-tracker-container {
+                            background: linear-gradient(135deg, #0f0c29 0%, #1a1040 50%, #141428 100%) !important;
+                            color: #f8fafc !important;
+                            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+                        }
+
+                        .bt-form {
+                            display: flex;
+                            gap: 15px;
+                            margin-bottom: 30px;
+                            flex-wrap: wrap;
+                        }
+
+                        .bt-input {
+                            flex: 1;
+                            min-width: 200px;
+                            padding: 14px 20px;
+                            border-radius: 12px;
+                            border: 1px solid rgba(124, 58, 237, 0.2);
+                            background: white;
+                            font-family: inherit;
+                            color: var(--text);
+                            transition: border-color 0.2s, background 0.2s;
+                        }
+
+                        .bt-input:focus {
+                            outline: none;
+                            border-color: rgba(124, 58, 237, 0.7);
+                        }
+
+                        .dark .bt-input {
+                            color: #f8fafc !important;
+                            background: rgba(255, 255, 255, 0.07) !important;
+                            border-color: rgba(167, 139, 250, 0.3) !important;
+                            backdrop-filter: blur(8px);
+                        }
+                        
+                        .dark .bt-input::placeholder {
+                            color: rgba(255, 255, 255, 0.4) !important;
+                        }
+                        
+                        .dark .bt-input:focus {
+                            border-color: rgba(167, 139, 250, 0.7) !important;
+                            background: rgba(255, 255, 255, 0.11) !important;
+                        }
+
+                        .bt-btn-add {
+                            padding: 14px 28px;
+                            background: var(--accent1);
+                            color: white;
+                            border: none;
+                            border-radius: 12px;
+                            font-weight: 700;
+                            cursor: pointer;
+                            transition: all 0.2s;
+                            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+                        }
+
+                        .bt-btn-add:hover {
+                            transform: translateY(-2px);
+                            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.3);
+                        }
+
+                        .bt-table-wrapper {
+                            overflow-x: auto;
+                            background: white;
+                            border-radius: 16px;
+                            border: 1px solid rgba(124, 58, 237, 0.1);
+                        }
+
+                        .dark .bt-table-wrapper {
+                            background: rgba(255, 255, 255, 0.05) !important;
+                            border-color: rgba(167, 139, 250, 0.15) !important;
+                            backdrop-filter: blur(4px);
+                        }
+
+                        .bt-table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            text-align: left;
+                        }
+
+                        .bt-table th {
+                            padding: 16px 20px;
+                            font-size: 11px;
+                            text-transform: uppercase;
+                            letter-spacing: 1px;
+                            color: var(--muted);
+                            border-bottom: 1px solid rgba(124, 58, 237, 0.05);
+                        }
+
+                        .dark .bt-table th {
+                            color: rgba(167, 139, 250, 0.8) !important;
+                            border-bottom-color: rgba(167, 139, 250, 0.1) !important;
+                        }
+
+                        .bt-table td {
+                            padding: 16px 20px;
+                            font-size: 14px;
+                            color: var(--text);
+                            border-bottom: 1px solid rgba(124, 58, 237, 0.05);
+                        }
+
+                        .dark .bt-table td {
+                            color: #f8fafc !important;
+                            border-bottom-color: rgba(167, 139, 250, 0.08) !important;
+                        }
+
+                        .bt-num-badge {
+                            background: rgba(124, 58, 237, 0.1);
+                            color: var(--accent1);
+                            padding: 4px 8px;
+                            border-radius: 6px;
+                            font-family: 'JetBrains Mono', monospace;
+                            font-weight: 700;
+                            font-size: 12px;
+                        }
+
+                        .bt-actions {
+                            display: flex;
+                            gap: 10px;
+                        }
+
+                        .bt-action-btn {
+                            padding: 8px 14px;
+                            border-radius: 8px;
+                            font-size: 12px;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: all 0.2s;
+                            display: flex;
+                            align-items: center;
+                            gap: 6px;
+                        }
+
+                        .bt-edit {
+                            background: rgba(6, 182, 212, 0.1);
+                            color: var(--accent2);
+                            border: 1px solid rgba(6, 182, 212, 0.2);
+                        }
+
+                        .bt-edit:hover {
+                            background: var(--accent2);
+                            color: white;
+                        }
+
+                        .bt-delete {
+                            background: rgba(239, 68, 68, 0.1);
+                            color: #ef4444;
+                            border: 1px solid rgba(239, 68, 68, 0.2);
+                        }
+
+                        .bt-delete:hover {
+                            background: #ef4444;
+                            color: white;
+                        }
+
+                        .bt-empty {
+                            padding: 40px;
+                            text-align: center;
+                            color: var(--muted);
+                            font-style: italic;
+                        }
+
+                        .bt-modal {
+                            position: fixed;
+                            inset: 0;
+                            background: rgba(15, 5, 50, 0.4);
+                            backdrop-filter: blur(4px);
+                            display: none;
+                            align-items: center;
+                            justify-content: center;
+                            z-index: 1000;
+                        }
+
+                        .bt-modal.open {
+                            display: flex;
+                        }
+
+                        .bt-modal-content {
+                            background: #ffffff;
+                            padding: 30px;
+                            border-radius: 20px;
+                            width: 100%;
+                            max-width: 400px;
+                            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+                            color: #1a1040;
+                            transition: background 0.3s ease, color 0.3s ease;
+                        }
+
+                        .bt-modal-content h3 { color: #1a1040; }
+                        .bt-modal-content label { color: #6b6b8a; font-size: 12px; font-weight: 600; display: block; margin-bottom: 6px; }
+                        .bt-modal-content .bt-input {
+                            background: #f9f7ff;
+                            border-color: rgba(124, 58, 237, 0.2);
+                            color: #1a1040;
+                        }
+
+                        /* Dark mode overrides for the edit modal */
+                        .dark .bt-modal-content {
+                            background: #1e1b3a !important;
+                            color: #f8fafc !important;
+                            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6) !important;
+                            border: 1px solid rgba(167, 139, 250, 0.2) !important;
+                        }
+                        .dark .bt-modal-content h3 { color: #f8fafc !important; }
+                        .dark .bt-modal-content label { color: rgba(167, 139, 250, 0.8) !important; }
+                        .dark .bt-modal-content .bt-input {
+                            background: rgba(255, 255, 255, 0.07) !important;
+                            border-color: rgba(167, 139, 250, 0.3) !important;
+                            color: #f8fafc !important;
+                        }
+                        .dark .bt-modal-content .btn-ghost {
+                            background: rgba(255, 255, 255, 0.07) !important;
+                            color: #f8fafc !important;
+                            border-color: rgba(167, 139, 250, 0.3) !important;
+                        }
+                        .dark .bt-modal { background: rgba(0, 0, 0, 0.6) !important; }
+                    </style>
+
+                    <div class="bt-form">
+                        <input type="text" id="bookTitle" class="bt-input" placeholder="Book Title">
+                        <input type="text" id="bookAuthor" class="bt-input" placeholder="Author Name">
+                        <button id="addBookBtn" class="bt-btn-add">+ Add Book</button>
+                    </div>
+
+                    <div class="bt-table-wrapper">
+                        <table class="bt-table">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Title</th>
+                                    <th>Author</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bookList"></tbody>
+                        </table>
+                        <div id="emptyState" class="bt-empty" style="display: none;">No books added yet.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="editModal" class="bt-modal">
+                <div class="bt-modal-content">
+                    <h3 style="margin-bottom: 20px;">Edit Book</h3>
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label>Title</label>
+                        <input type="text" id="editTitle" class="bt-input" style="width: 100%;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 25px;">
+                        <label>Author</label>
+                        <input type="text" id="editAuthor" class="bt-input" style="width: 100%;">
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button id="saveEditBtn" class="bt-btn-add" style="flex: 1;">Save Changes</button>
+                        <button onclick="closeEditModal()" class="btn btn-ghost"
+                            style="flex: 1; border: 1px solid #ddd;">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <script type="module">
+                import { books } from './books.js';
+
+                let currentEditingId = null;
+
+                const list = document.getElementById('bookList');
+                const empty = document.getElementById('emptyState');
+                const titleInput = document.getElementById('bookTitle');
+                const authorInput = document.getElementById('bookAuthor');
+                const addBtn = document.getElementById('addBookBtn');
+
+                const editModal = document.getElementById('editModal');
+                const editTitle = document.getElementById('editTitle');
+                const editAuthor = document.getElementById('editAuthor');
+                const saveBtn = document.getElementById('saveEditBtn');
+
+                async function loadBooks() {
+                    const { data, error } = await books.list();
+                    if (error) return console.error(error);
+
+                    list.innerHTML = '';
+                    if (!data || data.length === 0) {
+                        empty.style.display = 'block';
+                    } else {
+                        empty.style.display = 'none';
+                        data.forEach((book, index) => {
+                            const tr = document.createElement('tr');
+                            tr.innerHTML = `
+                                <td><span class="bt-num-badge">#${index + 1}</span></td>
+                                <td style="font-weight: 700;">${book.title}</td>
+                                <td>${book.author}</td>
+                                <td>
+                                    <div class="bt-actions">
+                                        <button class="bt-action-btn bt-edit" onclick="openEditModal('${book.id}', '${book.title}', '${book.author}')">
+                                            <span>✎</span> Edit
+                                        </button>
+                                        <button class="bt-action-btn bt-delete" onclick="deleteBook('${book.id}')">
+                                            <span>🗑</span> Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            `;
+                            list.appendChild(tr);
+                        });
+                    }
+                }
+
+                addBtn.onclick = async () => {
+                    const title = titleInput.value.trim();
+                    const author = authorInput.value.trim();
+                    if (!title || !author) return alert('Please fill in both fields');
+
+                    addBtn.disabled = true;
+                    addBtn.textContent = 'Adding...';
+
+                    const { error } = await books.create(title, author);
+                    if (error) alert(error.message);
+                    else {
+                        titleInput.value = '';
+                        authorInput.value = '';
+                        loadBooks();
+                    }
+                    addBtn.disabled = false;
+                    addBtn.textContent = '+ Add Book';
+                };
+
+                window.deleteBook = async (id) => {
+                    if (!confirm('Are you sure you want to delete this book?')) return;
+                    const { error } = await books.delete(id);
+                    if (error) alert(error.message);
+                    else loadBooks();
+                };
+
+                window.openEditModal = (id, title, author) => {
+                    currentEditingId = id;
+                    editTitle.value = title;
+                    editAuthor.value = author;
+                    editModal.classList.add('open');
+                };
+
+                window.closeEditModal = () => {
+                    editModal.classList.remove('open');
+                    currentEditingId = null;
+                };
+
+                saveBtn.onclick = async () => {
+                    const title = editTitle.value.trim();
+                    const author = editAuthor.value.trim();
+                    if (!title || !author) return alert('Please fill in both fields');
+
+                    saveBtn.disabled = true;
+                    saveBtn.textContent = 'Saving...';
+
+                    const { error } = await books.update(currentEditingId, title, author);
+                    if (error) alert(error.message);
+                    else {
+                        closeEditModal();
+                        loadBooks();
+                    }
+                    saveBtn.disabled = false;
+                    saveBtn.textContent = 'Save Changes';
+                };
+
+                loadBooks();
+            </script>
+
+            <a href="#" class="back-btn" onclick="showHome()">Back to Home</a>
+        </section>
+
+        <!-- ═══ ACTIVITY 12: SESSION MANAGEMENT ══════════ -->
+        <section class="activity-section" id="act12">
+            <div class="act-header">
+                <div class="act-header-label" style="color: var(--accent1);">Activity 12</div>
+                <h2>Session Management</h2>
+                <p>Supabase Auth integration — session persistence & user state</p>
+            </div>
+
+            <div class="exercise">
+                <div class="session-container">
+                    <div class="session-card-main">
+                        <div class="session-shield">🛡️</div>
+                        <h3 class="session-status-title">Security Status: <span class="session-status-badge">ACTIVE</span></h3>
+                        <div class="session-desc">
+                            You are currently logged in. This page is only accessible because a valid Supabase Session exists.
+                        </div>
+                        <div class="session-buttons">
+                            <button class="sess-btn sess-btn-logout" onclick="logout()">
+                                🚪 Logout Session
+                            </button>
+                            <button class="sess-btn sess-btn-home" onclick="showHome()">
+                                🏠 Return Home
+                            </button>
+                        </div>
+                        <div class="session-user-info">
+                            User: <span id="sessUserEmail">Loading...</span> | ID: <span id="sessUserId">...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" class="back-btn" onclick="showHome()">Back to Home</a>
+        </section>
+    </section>
+
+    <!-- ═══ LIGHTBOX ════════════════════════════ -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImg">
+    </div>
+
+    <style>
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 12px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+            animation: zoom 0.3s;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @keyframes zoom {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module">
+        import { auth } from './auth.js';
+
+        async function checkAuth() {
+            const session = await auth.requireAuth();
+            if (session) {
+                document.body.style.display = 'block';
+                // Load session info for Act 12
+                if (document.getElementById('sessUserId')) {
+                    const user = session.user;
+                    document.getElementById('sessUserId').textContent = user.id.substring(0, 15) + '...';
+                    document.getElementById('sessUserEmail').textContent = user.email;
+                    document.getElementById('sessLastLogin').textContent = new Date(user.last_sign_in_at).toLocaleString();
+                }
+            }
+        }
+
+        document.body.style.display = 'none';
+        checkAuth();
+
+        window.logout = async () => {
+            await auth.signOut();
+        };
+    </script>
+    <script>
+        document.querySelectorAll('.nav-link').forEach(a => {
+            a.addEventListener('click', (e) => {
+                const href = a.getAttribute('href');
+                if (href === '#' || href === '#hero') {
+                    e.preventDefault();
+                    showHome();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+        });
+
+        function showActivity(sectionId) {
+            document.getElementById('cards').style.display = 'none';
+            document.querySelectorAll('.activity-section').forEach(s => s.classList.remove('active'));
+            const target = document.getElementById(sectionId);
+            if (target) {
+                target.classList.add('active');
+                setTimeout(() => {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+
+            document.querySelectorAll('.nav-link').forEach(h => h.classList.remove('active'));
+            const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+            if (navLink) navLink.classList.add('active');
+        }
+
+        function showHome() {
+            document.getElementById('cards').style.display = 'block';
+            document.querySelectorAll('.activity-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(h => h.classList.remove('active'));
+            document.getElementById('navHome').classList.add('active');
+        }
+
+        function copyCode(btn) {
+            const pre = btn.closest('.panel-code').querySelector('pre');
+            const text = pre.innerText || pre.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = '✓ Copied!'; btn.classList.add('copied');
+                setTimeout(() => { btn.innerHTML = '⧉ Copy'; btn.classList.remove('copied'); }, 2000);
+            });
+        }
+
+        function toggleCode(btn) {
+            const panels = btn.closest('.ex-panels');
+            const code = panels.querySelector('.panel-code');
+            if (!code) return;
+            const isOpen = code.classList.contains('visible');
+            code.classList.toggle('visible', !isOpen);
+            btn.classList.toggle('open', !isOpen);
+            btn.innerHTML = isOpen
+                ? '<span class="btn-icon">▷</span> View Code'
+                : '<span class="btn-icon">▽</span> Hide Code';
+        }
+
+        window.addEventListener('scroll', () => {
+            const navHome = document.getElementById('navHome');
+            const hero = document.getElementById('hero');
+            const cards = document.getElementById('cards');
+
+            if (navHome && hero && cards) {
+                const heroTop = hero.offsetTop;
+                const cardsTop = cards.offsetTop;
+                // Only highlight Home if we are within the hero/intro area
+                navHome.classList.toggle('active', window.scrollY < cardsTop + 100);
+            }
+        });
+
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const isDark = localStorage.getItem('theme') === 'dark';
+
+        if (isDark) {
+            document.documentElement.classList.add('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            const darkEnabled = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', darkEnabled ? 'dark' : 'light');
+        });
+
+        // Helper functions for Jump Links and Lightbox
+        window.scrollToElement = (id) => {
+            const target = document.getElementById(id);
+            if (target) {
+                const headerOffset = 80;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+        };
+
+        window.openLightbox = (src) => {
+            const lb = document.getElementById('lightbox');
+            const img = document.getElementById('lightboxImg');
+            img.src = src;
+            lb.style.display = "block";
+            document.body.style.overflow = "hidden";
+        };
+
+        window.closeLightbox = () => {
+            document.getElementById('lightbox').style.display = "none";
+            document.body.style.overflow = "auto";
+        };
+    </script>
+</body>
+
+</html>

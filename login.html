@@ -8,20 +8,27 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         :root {
-            --text: #064e3b;
-            --muted: #4b5563;
-            --accent1: #10b981;
-            --accent2: #059669;
-            --bg-gradient: radial-gradient(ellipse at 10% 5%, rgba(16, 185, 129, .25) 0%, transparent 55%),
-                          radial-gradient(ellipse at 90% 12%, rgba(5, 150, 105, .25) 0%, transparent 52%),
-                          #f0fdf4;
+            --bg: #ffffff;
+            --text: #000000;
+            --muted: #52525b;
+            --accent1: #000000;
+            --accent2: #18181b;
+            --card-bg: #ffffff;
+            --card-border: #000000;
+            --shadow-color: #000000;
+            --shadow-offset: 6px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'DM Sans', sans-serif;
-            background: var(--bg-gradient);
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(rgba(0,0,0,0.06) 1.5px, transparent 1.5px),
+                radial-gradient(rgba(0,0,0,0.06) 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+            background-position: 0 0, 12px 12px;
             background-attachment: fixed;
             min-height: 100vh;
             display: flex;
@@ -34,12 +41,11 @@
         .auth-container {
             width: 100%;
             max-width: 420px;
-            background: rgba(255, 255, 255, 0.72);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            border-radius: 24px;
+            background: var(--card-bg);
+            border: 3px solid var(--card-border);
+            border-radius: 0px;
             padding: 40px;
-            box-shadow: 0 20px 40px rgba(5, 150, 105, 0.1);
+            box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--shadow-color);
             text-align: center;
         }
 
@@ -49,11 +55,12 @@
             font-weight: 900;
             line-height: 1;
             margin-bottom: 8px;
+            letter-spacing: 1px;
         }
 
         .logo-sub {
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--muted);
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -61,9 +68,11 @@
         }
 
         h2 {
-            font-size: 24px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 28px;
             margin-bottom: 8px;
-            font-weight: 700;
+            font-weight: 800;
+            text-transform: uppercase;
         }
 
         p.subtitle {
@@ -80,66 +89,76 @@
         label {
             display: block;
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 8px;
             color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         input {
             width: 100%;
             padding: 12px 16px;
-            border-radius: 12px;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            background: rgba(255, 255, 255, 0.5);
+            border-radius: 0px;
+            border: 3px solid var(--text);
+            background: var(--bg);
+            color: var(--text);
             font-family: inherit;
             font-size: 15px;
-            transition: all 0.2s;
+            font-weight: 600;
+            transition: all 0.15s;
+            box-shadow: 3px 3px 0px var(--text);
         }
 
         input:focus {
             outline: none;
-            border-color: var(--accent1);
-            background: white;
-            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+            background: var(--bg);
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px var(--text);
         }
 
         .btn {
             width: 100%;
             padding: 14px;
-            border-radius: 12px;
-            border: none;
+            border-radius: 0px;
+            border: 3px solid var(--text);
             font-family: inherit;
             font-size: 15px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
             margin-bottom: 16px;
-        }
-
-        .btn-primary {
+            box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--shadow-color);
             background: var(--text);
-            color: white;
+            color: var(--bg);
         }
 
-        .btn-primary:hover {
-            background: var(--accent1);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+        .btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: calc(var(--shadow-offset) + 2px) calc(var(--shadow-offset) + 2px) 0px var(--shadow-color);
+        }
+
+        .btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px var(--shadow-color);
         }
 
         .toggle-auth {
             font-size: 14px;
             color: var(--muted);
+            font-weight: 600;
         }
 
         .toggle-auth span {
-            color: var(--accent1);
-            font-weight: 600;
+            color: var(--text);
+            font-weight: 700;
+            text-decoration: underline;
             cursor: pointer;
         }
 
         #errorMessage {
             color: #ef4444;
+            font-weight: 700;
             font-size: 13px;
             margin-bottom: 16px;
             display: none;
